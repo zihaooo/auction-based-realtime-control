@@ -1,0 +1,72 @@
+{
+  "edge_list": [
+    "441190721#0",
+    "142178743#0",
+    "411705024",
+    "897491918",
+    "412646493#0",
+    "-441190750#5",
+    "-441190750#2",
+    "-441190750#2.108"
+  ],
+  "route_list_by_phase": {
+    "1": [
+      "12",
+      "13",
+      "14",
+      "19",
+      "22",
+      "28"
+    ],
+    "2": [
+      "18",
+      "21",
+      "27",
+      "11"
+    ],
+    "3": [
+      "4",
+      "7"
+    ],
+    "4": [
+      "6",
+      "1",
+      "2",
+      "3"
+    ]
+  },
+  "signal_by_phase": {
+    "1": {
+      "g": "GGGrGrrrGGGrGrrr",
+      "y": "GyyrGrrrGyyrGrrr",
+      "ar": "GrrrGrrrGrrrGrrr"
+    },
+    "2": {
+      "g": "GrrGGrrrGrrGGrrr",
+      "y": "GrryGrrrGrryGrrr",
+      "ar": "GrrrGrrrGrrrGrrr"
+    },
+    "3": {
+      "g": "GrrrGGGrGrrrGGGr",
+      "y": "GrrrGyyrGrrrGyyr",
+      "ar": "GrrrGrrrGrrrGrrr"
+    },
+    "4": {
+      "g": "GrrrGrrGGrrrGrrG",
+      "y": "GrrrGrryGrrrGrry",
+      "ar": "GrrrGrrrGrrrGrrr"
+    }
+  },
+  "yellow_by_phase": {
+    "1": 4.5,
+    "2": 4.5,
+    "3": 3.5,
+    "4": 3.5
+  },
+  "ar_by_phase": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2
+  }
+}

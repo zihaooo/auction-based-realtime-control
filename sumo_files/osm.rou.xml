@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2022-10-27 22:22:12 by Eclipse SUMO netedit Version 1.14.1
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <!-- Routes -->
+    <route id="r_1" edges="441190721#0 142178743#0 222786843#0 441190750#3 553146929#0 553146928#0 411672987#0 411670856#0 441386534"/>
+    <route id="r_2" edges="441190721#0 142178743#0 222786843#0 441190750#3 553146929#0 553146928#0 411672987#0 411653583#0 441386541#0"/>
+    <route id="r_3" edges="441190721#0 142178743#0 222786843#0 441190750#3 553146929#0 553146928#0 411672987#0 -411728065#1"/>
+    <route id="r_4" edges="441190721#0 142178743#0 478958406#0"/>
+    <route id="r_5" edges="441190721#0 142178743#0 -412646493#2 -897491920#2"/>
+    <route id="r_6" edges="411705024 -412646493#2 -897491920#2"/>
+    <route id="r_7" edges="411705024 -142178743#2 -441190721#3"/>
+    <route id="r_8" edges="411705024 222786843#0 441190750#3 553146929#0 553146928#0 411672987#0 411670856#0"/>
+    <route id="r_9" edges="411705024 222786843#0 441190750#3 553146929#0 553146928#0 411672987#0 411653583#0 441386541#0"/>
+    <route id="r_10" edges="411705024 222786843#0 441190750#3 553146929#0 553146928#0 411672987#0 -411728065#1"/>
+    <route id="r_11" edges="897491918 412646493#0 -142178743#2 -441190721#3"/>
+    <route id="r_12" edges="897491918 412646493#0 222786843#0 441190750#3 553146929#0 553146928#0 411672987#0 411670856#0"/>
+    <route id="r_13" edges="897491918 412646493#0 222786843#0 441190750#3 553146929#0 553146928#0 411672987#0 411653583#0 441386541#0"/>
+    <route id="r_14" edges="897491918 412646493#0 222786843#0 441190750#3 553146929#0 553146928#0 411672987#0 -411728065#1"/>
+    <route id="r_15" edges="897491918 412646493#0 478958406#0"/>
+    <route id="r_16" edges="-441386533#5 -411670856#1 411653583#0 441386541#0"/>
+    <route id="r_17" edges="-441386533#5 -411670856#1 -411728065#1"/>
+    <route id="r_18" edges="-441386533#5 -411670856#1 -411672987#1 -441386542 -553146929#4 -441190750#5 -441190750#2 -441190750#2.108 478958406#0"/>
+    <route id="r_19" edges="-441386533#5 -411670856#1 -411672987#1 -441386542 -553146929#4 -441190750#5 -441190750#2 -441190750#2.108 -412646493#2 -897491920#2"/>
+    <route id="r_20" edges="-441386533#5 -411670856#1 -411672987#1 -441386542 -553146929#4 -441190750#5 -441190750#2 -441190750#2.108 -142178743#2 -441190721#3"/>
+    <route id="r_21" edges="411728065#0 -411672987#1 -441386542 -553146929#4 -441190750#5 -441190750#2 -441190750#2.108 478958406#0"/>
+    <route id="r_22" edges="411728065#0 -411672987#1 -441386542 -553146929#4 -441190750#5 -441190750#2 -441190750#2.108 -412646493#2 -897491920#2"/>
+    <route id="r_23" edges="411728065#0 -411672987#1 -441386542 -553146929#4 -441190750#5 -441190750#2 -441190750#2.108 -142178743#2 -441190721#3"/>
+    <route id="r_24" edges="411728065#0 411670856#0 441386534"/>
+    <route id="r_25" edges="411728065#0 411653583#0 441386541#0"/>
+    <route id="r_26" edges="-897491917#1 -411653583#1 -411728065#1"/>
+    <route id="r_27" edges="-897491917#1 -411653583#1 -411672987#1 -441386542 -553146929#4 -441190750#5 -441190750#2 -441190750#2.108 478958406#0"/>
+    <route id="r_28" edges="-897491917#1 -411653583#1 -411672987#1 -441386542 -553146929#4 -441190750#5 -441190750#2 -441190750#2.108 -412646493#2 -897491920#2"/>
+    <route id="r_29" edges="-897491917#1 -411653583#1 -411672987#1 -441386542 -553146929#4 -441190750#5 -441190750#2 -441190750#2.108 -142178743#2 -441190721#3"/>
+    <route id="r_30" edges="-897491917#1 -411653583#1 411670856#0 441386534"/>
+
+    <!-- Vehicles -->
+    <flow id="v_1" type="DEFAULT_VEHTYPE" route="r_1" begin="0" end="3600" vehsPerHour="9.59"/>
+    <flow id="v_2" type="DEFAULT_VEHTYPE" route="r_2" begin="0" end="3600" vehsPerHour="173.78"/>
+    <flow id="v_3" type="DEFAULT_VEHTYPE" route="r_3" begin="0" end="3600" vehsPerHour="8.63"/>
+    <flow id="v_4" type="DEFAULT_VEHTYPE" route="r_4" begin="0" end="3600" vehsPerHour="226.80"/>
+    <flow id="v_5" type="DEFAULT_VEHTYPE" route="r_5" begin="0" end="3600" vehsPerHour="12.96"/>
+    <flow id="v_6" type="DEFAULT_VEHTYPE" route="r_6" begin="0" end="3600" vehsPerHour="251.16"/>
+    <flow id="v_7" type="DEFAULT_VEHTYPE" route="r_7" begin="0" end="3600" vehsPerHour="307.67"/>
+    <flow id="v_8" type="DEFAULT_VEHTYPE" route="r_8" begin="0" end="3600" vehsPerHour="16.91"/>
+    <flow id="v_9" type="DEFAULT_VEHTYPE" route="r_9" begin="0" end="3600" vehsPerHour="306.38"/>
+    <flow id="v_10" type="DEFAULT_VEHTYPE" route="r_10" begin="0" end="3600" vehsPerHour="15.22"/>
+    <flow id="v_11" type="DEFAULT_VEHTYPE" route="r_11" begin="0" end="3600" vehsPerHour="12.20"/>
+    <flow id="v_12" type="DEFAULT_VEHTYPE" route="r_12" begin="0" end="3600" vehsPerHour="41.29"/>
+    <flow id="v_13" type="DEFAULT_VEHTYPE" route="r_13" begin="0" end="3600" vehsPerHour="748.18"/>
+    <flow id="v_14" type="DEFAULT_VEHTYPE" route="r_14" begin="0" end="3600" vehsPerHour="37.16"/>
+    <flow id="v_15" type="DEFAULT_VEHTYPE" route="r_15" begin="0" end="3600" vehsPerHour="178.99"/>
+    <flow id="v_16" type="DEFAULT_VEHTYPE" route="r_16" begin="0" end="3600" vehsPerHour="547.74"/>
+    <flow id="v_17" type="DEFAULT_VEHTYPE" route="r_17" begin="0" end="3600" vehsPerHour="114.75"/>
+    <flow id="v_18" type="DEFAULT_VEHTYPE" route="r_18" begin="0" end="3600" vehsPerHour="19.23"/>
+    <flow id="v_19" type="DEFAULT_VEHTYPE" route="r_19" begin="0" end="3600" vehsPerHour="72.34"/>
+    <flow id="v_20" type="DEFAULT_VEHTYPE" route="r_20" begin="0" end="3600" vehsPerHour="10.17"/>
+    <flow id="v_21" type="DEFAULT_VEHTYPE" route="r_21" begin="0" end="3600" vehsPerHour="29.86"/>
+    <flow id="v_22" type="DEFAULT_VEHTYPE" route="r_22" begin="0" end="3600" vehsPerHour="112.32"/>
+    <flow id="v_23" type="DEFAULT_VEHTYPE" route="r_23" begin="0" end="3600" vehsPerHour="15.80"/>
+    <flow id="v_24" type="DEFAULT_VEHTYPE" route="r_24" begin="0" end="3600" vehsPerHour="176.15"/>
+    <flow id="v_25" type="DEFAULT_VEHTYPE" route="r_25" begin="0" end="3600" vehsPerHour="364.88"/>
+    <flow id="v_26" type="DEFAULT_VEHTYPE" route="r_26" begin="0" end="3600" vehsPerHour="75.62"/>
+    <flow id="v_27" type="DEFAULT_VEHTYPE" route="r_27" begin="0" end="3600" vehsPerHour="148.74"/>
+    <flow id="v_28" type="DEFAULT_VEHTYPE" route="r_28" begin="0" end="3600" vehsPerHour="559.56"/>
+    <flow id="v_29" type="DEFAULT_VEHTYPE" route="r_29" begin="0" end="3600" vehsPerHour="78.70"/>
+    <flow id="v_30" type="DEFAULT_VEHTYPE" route="r_30" begin="0" end="3600" vehsPerHour="429.09"/>
+</routes>

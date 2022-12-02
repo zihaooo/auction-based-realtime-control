@@ -1,0 +1,30 @@
+{
+  "duration_by_phase": {
+    "1": {
+      "min": 5,
+      "priority": 10,
+      "release": 5
+    },
+    "2": {
+      "min": 5,
+      "priority": 10,
+      "release": 5
+    },
+    "3": {
+      "min": 5,
+      "priority": 10,
+      "release": 5
+    },
+    "4": {
+      "min": 5,
+      "priority": 10,
+      "release": 5
+    }
+  },
+  "weight_by_phase": {
+    "1": 0.45,
+    "2": 0.15,
+    "3": 0.25,
+    "4": 0.15
+  }
+}
