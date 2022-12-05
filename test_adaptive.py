@@ -13,9 +13,15 @@ def main():
     config_dir = 'configs'
     control_config_dir = f'{config_dir}/params'
     constants_config_dir = f'{config_dir}/constants'
-    sumo_dir = 'sumo_files'
-    detector_output_filename = f'{sumo_dir}/e3output.xml'
-    sumo_config_filename = f'{sumo_dir}/osm.sumocfg'
+
+    sumo_template_dir = 'sumo_files'
+    tmp_str = f'{int(time.time() * 1000000)}_{random.randint(0, 99):0d}'
+    sumo_test_dir = f'sumo_{tmp_str}'.replace(' ', '_')
+    os.system(f'cp -r {sumo_template_dir} {sumo_test_dir}')
+
+    detector_output_filename = f'{sumo_test_dir}/e3output.xml'
+    sumo_config_filename = f'{sumo_test_dir}/osm.sumocfg'
+
     sumo_bin = 'sumo-gui' if debug else 'sumo'
     step = 0.5
     cmd = [
@@ -44,6 +50,8 @@ def main():
     sim.control()
     sim.close()
     report = sim.report()
+
+    os.system(f'rm -rf {sumo_test_dir}')
     return report
 
 

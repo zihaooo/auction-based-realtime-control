@@ -11,10 +11,16 @@ from utils.Sim import SimFixed
 
 def main():
     config_dir = 'configs'
-    sumo_dir = 'sumo_files'
-    detector_output_filename = f'{sumo_dir}/e3output.xml'
-    sumo_config_filename = f'{sumo_dir}/osm.sumocfg'
-    sumo_net_filename = f'{sumo_dir}/osm.net.xml'
+
+    sumo_template_dir = 'sumo_files'
+    tmp_str = f'{int(time.time() * 1000000)}_{random.randint(0, 99):0d}'
+    sumo_test_dir = f'sumo_{tmp_str}'.replace(' ', '_')
+    os.system(f'cp -r {sumo_template_dir} {sumo_test_dir}')
+
+    detector_output_filename = f'{sumo_test_dir}/e3output.xml'
+    sumo_config_filename = f'{sumo_test_dir}/osm.sumocfg'
+    sumo_net_filename = f'{sumo_test_dir}/osm.net.xml'
+
     sumo_bin = 'sumo-gui' if debug else 'sumo'
     step = 0.5
     cmd = [
@@ -36,12 +42,14 @@ def main():
     output_dir = 'output/fixed'
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    report_filename = f'{output_dir}/{int(time.time() * 1000)}_{random.randint(0, 99):0d}.json'
+    report_filename = f'{output_dir}/{tmp_str}.json'
 
     sim = SimFixed(junction_list, cmd, detector_output_filename, report_filename, sumo_net_filename)
     sim.control()
     sim.close()
     report = sim.report()
+
+    os.system(f'rm -rf {sumo_test_dir}')
     return report
 
 
