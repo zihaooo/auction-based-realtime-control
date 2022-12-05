@@ -1,3 +1,4 @@
 libsumo == 1.15.0
 traci == 1.15.0
 nni == 2.10
+scipy == 1.7.0
