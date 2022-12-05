@@ -57,6 +57,11 @@ $ conda activate cee-551
 You can run the test with following command:
 
 ```shell
-(cee-551) $ python main.py
+(cee-551) $ python test_adaptive.py
 ```
 
+Or
+
+```shell
+(cee-551) $ python test_fixed.py
+```

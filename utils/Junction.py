@@ -3,20 +3,27 @@ from __future__ import annotations
 
 import json
 from typing import Dict
+from . import traci
 
-import libsumo as traci
+
+class JunctionBase:
+    def __init__(self,
+                 junction_name: str,
+                 junction_id: str,
+                 count_down_step: float):
+        self.junction_name = junction_name
+        self.junction_id = junction_id
+        self.count_down_step: float = count_down_step
 
 
-class Junction:
+class JunctionAdaptive(JunctionBase):
     def __init__(self,
                  junction_name: str,
                  junction_id: str,
                  count_down_step: float,
                  constants_filename: str,
                  params_filename: str):
-        self.junction_name = junction_name
-        self.junction_id = junction_id
-        self.count_down_step: float = count_down_step
+        super().__init__(junction_name, junction_id, count_down_step)
 
         with open(constants_filename) as data_file:
             constants = json.load(data_file)
@@ -87,3 +94,17 @@ class Junction:
             return True
 
         return False
+
+
+class JunctionFixed(JunctionBase):
+    def __init__(self,
+                 junction_name: str,
+                 junction_id: str,
+                 count_down_step: float,
+                 fixed_plan_filename: str = None):
+        super().__init__(junction_name, junction_id, count_down_step)
+
+        with open(fixed_plan_filename) as data_file:
+            fixed_plan = json.load(data_file)
+        self.effective_green = fixed_plan['effective_green']
+        self.green_by_phase = fixed_plan['green_by_phase']
