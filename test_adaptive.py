@@ -43,7 +43,8 @@ def main():
     sim = SimAdaptive(junction_list, cmd, detector_output_filename, report_filename)
     sim.control()
     sim.close()
-    sim.report()
+    report = sim.report()
+    return report
 
 
 if __name__ == '__main__':

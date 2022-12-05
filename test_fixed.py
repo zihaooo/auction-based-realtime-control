@@ -41,7 +41,8 @@ def main():
     sim = SimFixed(junction_list, cmd, detector_output_filename, report_filename, sumo_net_filename)
     sim.control()
     sim.close()
-    sim.report()
+    report = sim.report()
+    return report
 
 
 if __name__ == '__main__':

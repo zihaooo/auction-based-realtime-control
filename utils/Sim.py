@@ -156,6 +156,7 @@ class SimAdaptive(SimBase):
 
         with open(self.report_filename, 'w') as data_file:
             json.dump(report, data_file, indent=2)
+        return report
 
 
 class SimFixed(SimBase):
@@ -204,3 +205,5 @@ class SimFixed(SimBase):
 
         with open(self.report_filename, 'w') as data_file:
             json.dump(report, data_file, indent=2)
+
+        return report
