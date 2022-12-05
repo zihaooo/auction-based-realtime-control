@@ -7,12 +7,12 @@ Created on Sun Dec  4 14:46:04 2022
 import os
 import traceback
 
-# only focus on Huron now
-
 import test_adaptive
 import json
 import nni
 
+
+min_green = 7
 
 def convert_data(compressed):
     loosedH = {
@@ -45,12 +45,16 @@ def convert_data(compressed):
             "4": 0.15
         }
     }
+    
+    sum_weight = 0
+    for phase in range(1, 5):
+        sum_weight += compressed['weight' + str(phase) + 'H']
 
     for phase in range(1, 5):
         loosedH['duration_by_phase'][str(phase)]['min'] = compressed['min' + str(phase) + 'H']
         loosedH['duration_by_phase'][str(phase)]['priority'] = compressed['priority' + str(phase) + 'H']
         loosedH['duration_by_phase'][str(phase)]['release'] = compressed['release' + str(phase) + 'H']
-        loosedH['weight_by_phase'][str(phase)] = compressed['weight' + str(phase) + 'H']
+        loosedH['weight_by_phase'][str(phase)] = compressed['weight' + str(phase) + 'H']/sum_weight
 
     loosedG = {
         "duration_by_phase": {
@@ -82,12 +86,16 @@ def convert_data(compressed):
             "4": 0.15
         }
     }
+    
+    sum_weight = 0
+    for phase in range(1, 5):
+        sum_weight += compressed['weight' + str(phase) + 'G']
 
     for phase in range(1, 5):
         loosedG['duration_by_phase'][str(phase)]['min'] = compressed['min' + str(phase) + 'G']
         loosedG['duration_by_phase'][str(phase)]['priority'] = compressed['priority' + str(phase) + 'G']
         loosedG['duration_by_phase'][str(phase)]['release'] = compressed['release' + str(phase) + 'G']
-        loosedG['weight_by_phase'][str(phase)] = compressed['weight' + str(phase) + 'G']
+        loosedG['weight_by_phase'][str(phase)] = compressed['weight' + str(phase) + 'G']/sum_weight
 
     return loosedH, loosedG
 
@@ -109,7 +117,7 @@ def train(params):
 
 def generate_default_params():
     return {
-        "min1H": 5,
+        "min1H": min_green,
         "priority1H": 10,
         "release1H": 5,
 
@@ -117,7 +125,7 @@ def generate_default_params():
         "priority2H": 10,
         "release2H": 5,
 
-        "min3H": 5,
+        "min3H": min_green,
         "priority3H": 10,
         "release3H": 5,
 
@@ -130,7 +138,7 @@ def generate_default_params():
         "weight3H": 0.25,
         "weight4H": 0.15,
 
-        "min1G": 5,
+        "min1G": min_green,
         "priority1G": 10,
         "release1G": 5,
 
@@ -138,7 +146,7 @@ def generate_default_params():
         "priority2G": 10,
         "release2G": 5,
 
-        "min3G": 5,
+        "min3G": min_green,
         "priority3G": 10,
         "release3G": 5,
 
