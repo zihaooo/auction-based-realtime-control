@@ -40,7 +40,6 @@ class SimBase:
         tree = et.parse(self.det_output_file)
         root = tree.getroot()
         time_loss_list_by_junction_name = {}
-        total_loss_by_junction_name = {}
         for bound in root:
             if bound.get('begin') != '0.00':
                 continue
@@ -54,7 +53,7 @@ class SimBase:
             mean_loss = float(bound.get('meanTimeLoss'))
             time_loss = num * mean_loss
             time_loss_list_by_junction_name.setdefault(junction_name, []).append(time_loss)
-            total_loss = total_loss_by_junction_name.get(junction_name, 0)
+            total_loss = self.total_loss_by_junction_name.get(junction_name, 0)
             self.total_loss_by_junction_name[junction_name] = total_loss + time_loss
         return self.total_loss_by_junction_name
 
