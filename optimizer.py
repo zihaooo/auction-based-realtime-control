@@ -11,8 +11,8 @@ import test_adaptive
 import json
 import nni
 
-
 min_green = 7
+
 
 def convert_data(compressed):
     loosedH = {
@@ -45,7 +45,7 @@ def convert_data(compressed):
             "4": 0.15
         }
     }
-    
+
     sum_weight = 0
     for phase in range(1, 5):
         sum_weight += compressed['weight' + str(phase) + 'H']
@@ -54,7 +54,7 @@ def convert_data(compressed):
         loosedH['duration_by_phase'][str(phase)]['min'] = compressed['min' + str(phase) + 'H']
         loosedH['duration_by_phase'][str(phase)]['priority'] = compressed['priority' + str(phase) + 'H']
         loosedH['duration_by_phase'][str(phase)]['release'] = compressed['release' + str(phase) + 'H']
-        loosedH['weight_by_phase'][str(phase)] = compressed['weight' + str(phase) + 'H']/sum_weight
+        loosedH['weight_by_phase'][str(phase)] = compressed['weight' + str(phase) + 'H'] / sum_weight
 
     loosedG = {
         "duration_by_phase": {
@@ -86,7 +86,7 @@ def convert_data(compressed):
             "4": 0.15
         }
     }
-    
+
     sum_weight = 0
     for phase in range(1, 5):
         sum_weight += compressed['weight' + str(phase) + 'G']
@@ -95,7 +95,7 @@ def convert_data(compressed):
         loosedG['duration_by_phase'][str(phase)]['min'] = compressed['min' + str(phase) + 'G']
         loosedG['duration_by_phase'][str(phase)]['priority'] = compressed['priority' + str(phase) + 'G']
         loosedG['duration_by_phase'][str(phase)]['release'] = compressed['release' + str(phase) + 'G']
-        loosedG['weight_by_phase'][str(phase)] = compressed['weight' + str(phase) + 'G']/sum_weight
+        loosedG['weight_by_phase'][str(phase)] = compressed['weight' + str(phase) + 'G'] / sum_weight
 
     return loosedH, loosedG
 

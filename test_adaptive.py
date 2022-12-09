@@ -27,7 +27,10 @@ def main():
     cmd = [
         sumo_bin,
         '-c', sumo_config_filename,
-        '--step-length', f'{step}']
+        '--step-length', f'{step}',
+        '--duration-log.statistics',
+        '--tripinfo-output', f'{sumo_test_dir}/output.xml'
+    ]
     junction_list = [
         JunctionAdaptive(junction_name='Huron',
                          junction_id='cluster_62477163_62500824',

@@ -145,6 +145,7 @@ class SimAdaptive(SimBase):
     def report(self):
         self.calc_loss()
         report = {}
+        log = {}
         for junction in self.junction_list:
             junction_name = junction.junction_name
             report[junction_name] = {
@@ -152,9 +153,15 @@ class SimAdaptive(SimBase):
                 'duration_by_phase': junction.duration_by_phase,
                 'weight_by_phase': junction.weight_by_phase
             }
+            log[junction_name] = {
+                'phase_start_t': junction.phase_log[0],
+                'phase': junction.phase_log[1]
+            }
 
         with open(self.report_filename, 'w') as data_file:
             json.dump(report, data_file, indent=2)
+        with open(f'logs/adaptive/phase.log', 'w') as data_file:
+            json.dump(log, data_file, indent=2)
         return report
 
 

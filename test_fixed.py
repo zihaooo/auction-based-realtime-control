@@ -26,7 +26,10 @@ def main():
     cmd = [
         sumo_bin,
         '-c', sumo_config_filename,
-        '--step-length', f'{step}']
+        '--step-length', f'{step}',
+        '--duration-log.statistics',
+        '--tripinfo-output', f'{sumo_test_dir}/output.xml'
+    ]
     fixed_plan_dir = f'{config_dir}/plans'
     junction_list = [
         JunctionFixed(junction_name='Huron',

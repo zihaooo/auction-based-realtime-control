@@ -4,7 +4,6 @@ Created on Sun Dec  4 14:46:04 2022
 
 @author: minghuiw
 """
-import os
 import traceback
 
 import test_fixed
@@ -15,47 +14,49 @@ min_green = 7
 greenH = 96
 greenG = 95
 
+
 def convert_data(compressed):
-    #For Huron
+    # For Huron
     loosedH = {
-      "effective_green": greenH,
-      "green_by_phase": {
-        "1": 52,
-        "2": 14,
-        "3": 13,
-        "4": 17
-      }
+        "effective_green": greenH,
+        "green_by_phase": {
+            "1": 52,
+            "2": 14,
+            "3": 13,
+            "4": 17
+        }
     }
-    
+
     sum_green = 0
     for phase in range(1, 5):
         sum_green += compressed[str(phase) + 'H']
-    
-    loosedH['green_by_phase']['1'] = int(compressed['1H']/sum_green*(greenH-2*min_green))+min_green
-    loosedH['green_by_phase']['2'] = int(compressed['2H']/sum_green*(greenH-2*min_green))
-    loosedH['green_by_phase']['3'] = int(compressed['3H']/sum_green*(greenH-2*min_green))+min_green
-    loosedH['green_by_phase']['4'] = greenH - loosedH['green_by_phase']['1']-loosedH['green_by_phase']['2']-loosedH['green_by_phase']['3']
-        
-    #For Green
+
+    loosedH['green_by_phase']['1'] = int(compressed['1H'] / sum_green * (greenH - 2 * min_green)) + min_green
+    loosedH['green_by_phase']['2'] = int(compressed['2H'] / sum_green * (greenH - 2 * min_green))
+    loosedH['green_by_phase']['3'] = int(compressed['3H'] / sum_green * (greenH - 2 * min_green)) + min_green
+    loosedH['green_by_phase']['4'] = greenH - loosedH['green_by_phase']['1'] - loosedH['green_by_phase']['2'] - \
+                                     loosedH['green_by_phase']['3']
+
+    # For Green
     loosedG = {
-      "effective_green": greenG,
-      "green_by_phase": {
-        "1": 52,
-        "2": 14,
-        "3": 13,
-        "4": 17
-      }
+        "effective_green": greenG,
+        "green_by_phase": {
+            "1": 52,
+            "2": 14,
+            "3": 13,
+            "4": 17
+        }
     }
-    
+
     sum_green = 0
     for phase in range(1, 5):
         sum_green += compressed[str(phase) + 'G']
-    
-    loosedG['green_by_phase']['1'] = int(compressed['1G']/sum_green*(greenG-2*min_green))+min_green
-    loosedG['green_by_phase']['2'] = int(compressed['2G']/sum_green*(greenG-2*min_green))
-    loosedG['green_by_phase']['3'] = int(compressed['3G']/sum_green*(greenG-2*min_green))+min_green
-    loosedG['green_by_phase']['4'] = greenG - loosedG['green_by_phase']['1']-loosedG['green_by_phase']['2']-loosedG['green_by_phase']['3']
-    
+
+    loosedG['green_by_phase']['1'] = int(compressed['1G'] / sum_green * (greenG - 2 * min_green)) + min_green
+    loosedG['green_by_phase']['2'] = int(compressed['2G'] / sum_green * (greenG - 2 * min_green))
+    loosedG['green_by_phase']['3'] = int(compressed['3G'] / sum_green * (greenG - 2 * min_green)) + min_green
+    loosedG['green_by_phase']['4'] = greenG - loosedG['green_by_phase']['1'] - loosedG['green_by_phase']['2'] - \
+                                     loosedG['green_by_phase']['3']
 
     return loosedH, loosedG
 
@@ -77,15 +78,15 @@ def train(params):
 
 def generate_default_params():
     return {
-        "1H":52-min_green,
-        "2H":14,
-        "3H":13-min_green,
-        "4H":17,
-        
-        "1G":56-min_green,
-        "2G":7,
-        "3G":16-min_green,
-        "4G":16,
+        "1H": 52 - min_green,
+        "2H": 14,
+        "3H": 13 - min_green,
+        "4H": 17,
+
+        "1G": 56 - min_green,
+        "2G": 7,
+        "3G": 16 - min_green,
+        "4G": 16,
     }
 
 

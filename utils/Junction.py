@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import json
-from typing import Dict
+from typing import Dict, List, Tuple
 from . import traci
 
 
@@ -14,6 +14,7 @@ class JunctionBase:
         self.junction_name = junction_name
         self.junction_id = junction_id
         self.count_down_step: float = count_down_step
+        self.phase_log: Tuple[List[float], List[str]] = ([], [])
 
 
 class JunctionAdaptive(JunctionBase):
@@ -91,6 +92,8 @@ class JunctionAdaptive(JunctionBase):
                 traci.trafficlight.setRedYellowGreenState(self.junction_id,
                                                           self.signal_by_phase[self.current_phase]['g'])
                 self.last_change_ts = traci.simulation.getTime()
+                self.phase_log[0].append(self.last_change_ts)
+                self.phase_log[1].append(self.current_phase)
             return True
 
         return False
