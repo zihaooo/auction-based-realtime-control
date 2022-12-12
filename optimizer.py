@@ -7,7 +7,7 @@ Created on Sun Dec  4 14:46:04 2022
 import os
 import traceback
 
-import test_adaptive
+import test_auction_based
 import json
 import nni
 
@@ -107,8 +107,8 @@ def train(params):
     with open("./configs/params/Green.json", "w") as outfile:
         json.dump(green_json, outfile, indent=2)
 
-    test_adaptive.debug = False
-    data = test_adaptive.main()
+    test_auction_based.debug = False
+    data = test_auction_based.main()
 
     loss = float(data["Huron"]["total_time_loss"]) + float(data["Green"]["total_time_loss"])
     # nni.report_intermediate_result(loss)

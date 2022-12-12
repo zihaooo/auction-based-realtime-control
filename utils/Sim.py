@@ -8,15 +8,15 @@ from xml.etree import ElementTree as et
 
 from . import traci
 
-from utils.Junction import JunctionFixed, JunctionAdaptive
+from utils.Junction import JunctionFixed, JunctionAuctionBased
 
 
 class SimBase:
-    def __init__(self, junction_list: List[JunctionFixed | JunctionAdaptive],
-                 cmd: List[str],
+    def __init__(self,
+                 junction_list: List[JunctionFixed | JunctionAuctionBased],
                  detector_output_file: str,
                  report_filename: str):
-        self.junction_list: List[JunctionFixed | JunctionAdaptive] = junction_list
+        self.junction_list: List[JunctionFixed | JunctionAuctionBased] = junction_list
         self.report_filename = report_filename
         self.det_output_file = detector_output_file
         self.total_loss_by_junction_name = {}
@@ -58,20 +58,20 @@ class SimBase:
             self.total_loss_by_junction_name[junction_name] = total_loss + time_loss
         return self.total_loss_by_junction_name
 
-    def report(self):
+    def report(self, *args, **kwargs):
         pass
 
     def control(self):
         pass
 
 
-class SimAdaptive(SimBase):
-    def __init__(self, junction_list: List[JunctionAdaptive],
+class SimAuctionBased(SimBase):
+    def __init__(self, junction_list: List[JunctionAuctionBased],
                  cmd: List[str],
                  detector_output_file: str,
                  report_filename: str,
                  penetration_rate: float = 1.0):
-        super().__init__(junction_list, cmd, detector_output_file, report_filename)
+        super().__init__(junction_list, detector_output_file, report_filename)
         traci.start(cmd)
         self.penetration_rate = penetration_rate
         self.observed_veh_set = set()
@@ -84,7 +84,7 @@ class SimAdaptive(SimBase):
                 continue
             route = veh.split('_')[-1].split('.')[0]
             edge_id = lane_id.split('_')[0]
-            junction: JunctionAdaptive | None = None
+            junction: JunctionAuctionBased | None = None
             for _junction in self.junction_list:
                 if route not in _junction.route_set:
                     continue
@@ -150,7 +150,7 @@ class SimAdaptive(SimBase):
                     continue
                 junction.change_phase(next_phase)
 
-    def report(self):
+    def report(self, log_filename: str):
         self.calc_loss()
         report = {}
         log = {}
@@ -169,7 +169,7 @@ class SimAdaptive(SimBase):
 
         with open(self.report_filename, 'w') as data_file:
             json.dump(report, data_file, indent=2)
-        with open(f'logs/adaptive/phase.log', 'w') as data_file:
+        with open(log_filename, 'w') as data_file:
             json.dump(log, data_file, indent=2)
         return report
 
@@ -180,7 +180,7 @@ class SimFixed(SimBase):
                  detector_output_file: str,
                  report_filename: str,
                  net_filename: str):
-        super().__init__(junction_list, cmd, detector_output_file, report_filename)
+        super().__init__(junction_list, detector_output_file, report_filename)
         self.net_filename = net_filename
         self.setting_fixed_timing()
         traci.start(cmd)

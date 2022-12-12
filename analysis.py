@@ -11,7 +11,7 @@ def main():
 
 
 def analysis(junction_name: str):
-    with open('logs/adaptive/phase.log') as data_file:
+    with open('logs/auction_based/phase.log') as data_file:
         phase_log_by_junction_name = json.load(data_file)
     phase_log = phase_log_by_junction_name[junction_name]
     analysis_cycle(phase_log)
@@ -57,7 +57,6 @@ def analysis_green_split(phase_log: Dict[str, Any]):
 
     for phase, phase_length_list in phase_length_list_by_phase.items():
         print(f'phase: {phase}, mean: {np.mean(phase_length_list):.1f}, std: {np.std(phase_length_list):.1f}')
-
 
 
 if __name__ == "__main__":

@@ -4,26 +4,26 @@ import json
 
 import numpy as np
 
-import test_adaptive, test_fixed
+import test_auction_based, test_fixed
 import matplotlib.pyplot as plt
 
 
 def main():
-    # repeat_adaptive()
+    # repeat_auction_based()
     # repeat_fixed_time()
-    loss_list_by_penetration_rate = do_statistic('adaptive')
+    loss_list_by_penetration_rate = do_statistic('auction_based')
     loss_list_by_penetration_rate.update(do_statistic('fixed'))
 
     plot(loss_list_by_penetration_rate)
     print(1 - np.mean(loss_list_by_penetration_rate[1.0]) / np.mean(loss_list_by_penetration_rate['fixed']))
 
 
-def repeat_adaptive():
+def repeat_auction_based():
     for idx in range(1, 11):
         p = idx / 10
         for exp_idx in range(10):
-            test_adaptive.debug = False
-            test_adaptive.main(p)
+            test_auction_based.debug = False
+            test_auction_based.main(p)
 
 
 def repeat_fixed_time():

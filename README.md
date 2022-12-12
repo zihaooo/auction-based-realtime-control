@@ -57,7 +57,7 @@ $ conda activate cee-551
 You can run the test with following command:
 
 ```shell
-(cee-551) $ python test_adaptive.py
+(cee-551) $ python test_auction_based.py
 ```
 
 Or

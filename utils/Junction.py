@@ -17,7 +17,7 @@ class JunctionBase:
         self.phase_log: Tuple[List[float], List[str]] = ([], [])
 
 
-class JunctionAdaptive(JunctionBase):
+class JunctionAuctionBased(JunctionBase):
     def __init__(self,
                  junction_name: str,
                  junction_id: str,
