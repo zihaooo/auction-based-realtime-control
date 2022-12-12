@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import random
 from typing import List
 from xml.etree import ElementTree as et
 
@@ -68,9 +69,12 @@ class SimAdaptive(SimBase):
     def __init__(self, junction_list: List[JunctionAdaptive],
                  cmd: List[str],
                  detector_output_file: str,
-                 report_filename: str):
+                 report_filename: str,
+                 penetration_rate: float = 1.0):
         super().__init__(junction_list, cmd, detector_output_file, report_filename)
         traci.start(cmd)
+        self.penetration_rate = penetration_rate
+        self.observed_veh_set = set()
 
     def update_traffic_state(self):
         veh_list = traci.vehicle.getIDList()
@@ -91,16 +95,20 @@ class SimAdaptive(SimBase):
                     _junction.veh_set.remove(veh)
                     del _junction.init_loss_time_by_veh[veh]
                     del _junction.accumulate_loss_time_by_veh[veh]
+                    if veh in _junction.observed_veh_set:
+                        _junction.observed_veh_set.remove(veh)
             if junction is None:
                 continue
             loss_time = traci.vehicle.getTimeLoss(veh)
             if veh not in junction.veh_set:
                 junction.init_loss_time_by_veh[veh] = loss_time
                 junction.veh_set.add(veh)
+                if random.random() >= 1 - self.penetration_rate:
+                    junction.observed_veh_set.add(veh)
             junction.accumulate_loss_time_by_veh[veh] = loss_time
         for junction in self.junction_list:
             junction.reset_phase_time_loss()
-            for veh in junction.veh_set:
+            for veh in junction.veh_set & junction.observed_veh_set:
                 junction.update_phase_time_loss_list_by_veh(veh)
 
     def control(self):
@@ -149,6 +157,7 @@ class SimAdaptive(SimBase):
         for junction in self.junction_list:
             junction_name = junction.junction_name
             report[junction_name] = {
+                'penetration_rate': self.penetration_rate,
                 'total_time_loss': self.total_loss_by_junction_name[junction_name],
                 'duration_by_phase': junction.duration_by_phase,
                 'weight_by_phase': junction.weight_by_phase

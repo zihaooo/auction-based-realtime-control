@@ -9,7 +9,7 @@ from utils.Junction import JunctionAdaptive
 from utils.Sim import SimAdaptive
 
 
-def main():
+def main(penetration_rate=1.0):
     config_dir = 'configs'
     control_config_dir = f'{config_dir}/params'
     constants_config_dir = f'{config_dir}/constants'
@@ -29,6 +29,7 @@ def main():
         '-c', sumo_config_filename,
         '--step-length', f'{step}',
         '--duration-log.statistics',
+        # '--random',
         '--tripinfo-output', f'{sumo_test_dir}/output.xml'
     ]
     junction_list = [
@@ -49,7 +50,7 @@ def main():
         os.makedirs(output_dir)
     report_filename = f'{output_dir}/{int(time.time() * 1000)}_{random.randint(0, 99):0d}.json'
 
-    sim = SimAdaptive(junction_list, cmd, detector_output_filename, report_filename)
+    sim = SimAdaptive(junction_list, cmd, detector_output_filename, report_filename, penetration_rate)
     sim.control()
     sim.close()
     report = sim.report()

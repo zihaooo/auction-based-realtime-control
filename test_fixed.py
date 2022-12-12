@@ -27,6 +27,7 @@ def main():
         sumo_bin,
         '-c', sumo_config_filename,
         '--step-length', f'{step}',
+        '--random',
         '--duration-log.statistics',
         '--tripinfo-output', f'{sumo_test_dir}/output.xml'
     ]

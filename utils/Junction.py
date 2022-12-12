@@ -45,6 +45,7 @@ class JunctionAdaptive(JunctionBase):
         self.weight_by_phase = params['weight_by_phase']
 
         self.veh_set = set()
+        self.observed_veh_set = set()
         self.init_loss_time_by_veh = {}
         self.accumulate_loss_time_by_veh = {}
         self.time_loss_list_by_phase = {}
