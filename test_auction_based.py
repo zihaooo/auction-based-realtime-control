@@ -20,6 +20,7 @@ def main(penetration_rate=1.0):
     os.system(f'cp -r {sumo_template_dir} {sumo_test_dir}')
 
     detector_output_filename = f'{sumo_test_dir}/e3output.xml'
+    trip_output_filename = f'{sumo_test_dir}/output.xml'
     sumo_config_filename = f'{sumo_test_dir}/osm.sumocfg'
 
     sumo_bin = 'sumo-gui' if debug else 'sumo'
@@ -54,7 +55,8 @@ def main(penetration_rate=1.0):
     report_filename = f'{output_dir}/{int(time.time() * 1000)}_{random.randint(0, 99):0d}.json'
     phase_log_filename = f'{log_dir}/phase.log'
 
-    sim = SimAuctionBased(junction_list, cmd, detector_output_filename, report_filename, penetration_rate)
+    sim = SimAuctionBased(junction_list, cmd, detector_output_filename, trip_output_filename, report_filename,
+                          penetration_rate)
     sim.control()
     sim.close()
     report = sim.report(phase_log_filename)
